@@ -1,0 +1,62 @@
+kalimat = str(input('Masukkan sebuah kalimat (lebih dari 1 kata): '))
+kalimat = kalimat.lower()
+
+#split kalimat dengan spasi
+kata = []
+bb = 0
+
+for i in range(len(kalimat)):
+    if kalimat[i] == ' ':
+        kata.append(kalimat[bb:i])
+        bb = i+1
+    if i == len(kalimat)-1:
+        kata.append(kalimat[bb:i+1])
+print(kata)
+
+# hilangkan karakter '' atau kosong
+i = 0
+while True:
+    if kata[i] =='':
+        kata.pop(i)
+        i -= 1
+    i +=1
+    if i == len(kata):
+        break
+print(kata)
+
+#pengecekan karakter khusus dalam kata
+charr = 'abcdefghijklmnopqrstuvwxyz'
+# jika "," "?" dan "." diakhir kata maka tidak masalah
+# jika - dalam kata berulang maka tidak masalah
+
+jmlh_kata = len(kata)
+
+for i in kata:
+    a = i
+    positif = True
+    
+    for j in range(len(a)):
+        if (a[j] not in charr) and (j != len(a)-1 ):
+            if (a[j] == '-'):
+                katulang1 = a[0:j]
+                katulang2 = a[j+1:len(a)]
+                if katulang1 == katulang2 :
+                    positif = True
+                else:
+                    positif = False
+            else:
+                positif = False
+        
+        if (a[j] not in charr) and (j == len(a)-1 ):
+            if (a[j] in ['?','.',',']) : 
+                positif = positif
+            else:
+                positif = False
+
+            
+    print(str(positif))     
+    
+    if positif == False :
+        jmlh_kata -= 1
+        
+print(jmlh_kata)

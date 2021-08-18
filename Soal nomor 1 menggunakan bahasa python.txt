@@ -1,0 +1,26 @@
+loops = True
+array = []
+print("Ketikkan 'YES' jika selesai menginput angka")
+while loops :
+    n = input("Input angka : ")
+    if n != "YES":
+        array.append(int(n))
+    else:
+        loops = False
+    
+print(array)
+sepasang = 0
+
+loops = True
+while loops:
+    a = array[0]
+    array.pop(0)
+    for j in range(len(array)):
+        if a == array[j]:
+            sepasang += 1
+            array.pop(j)
+            break
+    if len(array) == 0:
+        loops =  False
+    
+print(str(sepasang)+' pasang')
